@@ -9,9 +9,11 @@ export default function DayListItem(props) {
   });
 
   const formatSpots = (props) => {
-    return props.spots === 0 ? "no spots remaining" :
-    props.spots === 1 ? "1 spot remaining": 
-    `${props.spots} spots remaining`
+    return (
+      props.spots === 0 ? "no spots remaining" :
+      props.spots === 1 ? "1 spot remaining": 
+      `${props.spots} spots remaining`
+    )
   }
 
   return (

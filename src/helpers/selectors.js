@@ -15,3 +15,7 @@ export function getAppointmentsForDay(state, day) {
   }
   return results;
 };
+
+export function getInterview(state, interview) {
+
+};

@@ -55,6 +55,11 @@ const appointments = [
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
   const [days, setDays] = useState([]);
+  // const [state, setState] = useState({
+  //   day: "Monday",
+  //   days: [],
+  //   appointments: {}
+  // });
 
   useEffect(() => {
     axios.get("/api/days")

@@ -1,8 +1,17 @@
 export function getAppointmentsForDay(state, day) {
-
+  const foundDay = state.days.find(oneDay => oneDay.name === day);
+  const results = [];
+  let appointmentsForDay = [];
+  if (foundDay) {
+    appointmentsForDay = foundDay.appointments;
+  } else {
+    return results;
+  }
+  
+  if (appointmentsForDay.length > 0) {
+    for (let appointmentId of appointmentsForDay) {
+      results.push(state.appointments[appointmentId])
+    }
+  }
+  return results;
 };
-
-// function selectUserByName(state, name) {
-//   const filteredNames = state.users.filter(user => user.name === name);
-//   return filteredNames;
-// }

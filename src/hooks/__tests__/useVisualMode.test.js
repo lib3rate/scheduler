@@ -23,22 +23,42 @@ test("useVisualMode should return to previous mode", () => {
 
   act(() => result.current.transition(SECOND));
   expect(result.current.mode).toBe(SECOND);
-  console.log('THIS IS CURRENT MODE AFTER TRANSITION TO SECOND:', result.current.mode);
-  console.log('THIS IS HISTORY AFTER TRANSITION TO SECOND:', result.current.history);
+  // console.log('THIS IS CURRENT MODE AFTER TRANSITION TO SECOND:', result.current.mode);
+  // console.log('THIS IS HISTORY AFTER TRANSITION TO SECOND:', result.current.history);
 
   act(() => result.current.transition(THIRD));
   expect(result.current.mode).toBe(THIRD);
-
-  console.log('THIS IS CURRENT MODE AFTER TRANSITION TO THIRD:', result.current.mode);
-  console.log('THIS IS HISTORY AFTER TRANSITION TO THIRD:', result.current.history);
+  // console.log('THIS IS CURRENT MODE AFTER TRANSITION TO THIRD:', result.current.mode);
+  // console.log('THIS IS HISTORY AFTER TRANSITION TO THIRD:', result.current.history);
 
   act(() => result.current.back());
   expect(result.current.mode).toBe(SECOND);
-  console.log('THIS IS CURRENT MODE AFTER GOING BACK TO SECOND:', result.current.mode);
-  console.log('THIS IS HISTORY AFTER GOING BACK TO SECOND:', result.current.history);
+  // console.log('THIS IS CURRENT MODE AFTER GOING BACK TO SECOND:', result.current.mode);
+  // console.log('THIS IS HISTORY AFTER GOING BACK TO SECOND:', result.current.history);
 
   act(() => result.current.back());
   expect(result.current.mode).toBe(FIRST);
-  console.log('THIS IS CURRENT MODE AFTER GOING BACK TO FIRST:', result.current.mode);
-  console.log('THIS IS HISTORY AFTER GOING BACK TO FIRST:', result.current.history);
+  // console.log('THIS IS CURRENT MODE AFTER GOING BACK TO FIRST:', result.current.mode);
+  // console.log('THIS IS HISTORY AFTER GOING BACK TO FIRST:', result.current.history);
+});
+
+test("useVisualMode should not return to previous mode if already at initial", () => {
+  const { result } = renderHook(() => useVisualMode(FIRST));
+
+  act(() => result.current.back());
+  expect(result.current.mode).toBe(FIRST);
+});
+
+test("useVisualMode should replace the current mode", () => {
+  const { result } = renderHook(() => useVisualMode(FIRST));
+
+  act(() => result.current.transition(SECOND));
+  expect(result.current.mode).toBe(SECOND);
+
+  // Passing "true" to transition(THIRD, true) says "Transition to THIRD by REPLACING SECOND"
+  act(() => result.current.transition(THIRD, true));
+  expect(result.current.mode).toBe(THIRD);
+
+  act(() => result.current.back());
+  expect(result.current.mode).toBe(FIRST);
 });

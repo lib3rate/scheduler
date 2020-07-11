@@ -26,14 +26,25 @@ export default function Application(props) {
     });
   }, []);
 
-  const appointments = getAppointmentsForDay(state, state.day);
-  const interviewers = getInterviewersForDay(state, state.day);
+  const appointmentsForDay = getAppointmentsForDay(state, state.day);
+  const interviewersForDay = getInterviewersForDay(state, state.day);
 
   function bookInterview(id, interview) {
-    console.log(`Appointment ID is ${id}, Interview is ${interview}`);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments
+    })
   };
 
-  const schedule = appointments.map((appointment) => {
+  const schedule = appointmentsForDay.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
   
     return (
@@ -42,7 +53,7 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
-        interviewers={interviewers}
+        interviewers={interviewersForDay}
         bookInterview={bookInterview}
       />
     );

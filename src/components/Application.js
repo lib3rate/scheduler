@@ -67,7 +67,7 @@ export default function Application(props) {
             appointments
           })
         })
-        .catch(error => console.log('test', error))
+        // .catch(error => console.log(`There was an error: ${error}`))
     );
   };
 
@@ -81,6 +81,8 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewersForDay}
+        name={ interview ? interview.student : null }
+        interviewer={ (interview && interview.interviewer) ? interview.interviewer.id : null }
         bookInterview={bookInterview}
         cancelInterview={cancelInterview}
       />

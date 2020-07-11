@@ -7,15 +7,18 @@ import Empty from "components/Appointment/Empty"
 import Show from "components/Appointment/Show"
 import Confirm from "components/Appointment/Confirm"
 import Status from "components/Appointment/Status"
-// import Error from "components/Appointment/Error"
+import Error from "components/Appointment/Error"
 import Form from "components/Appointment/Form"
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const EDIT = "EDIT";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
 
@@ -33,7 +36,10 @@ export default function Appointment(props) {
       .then(() => {
         transition(SHOW);
       })
-      .catch((error) => console.log(error));
+      .catch(() => {
+        // console.log("We have an error");
+        transition(ERROR_SAVE)
+      });
   };
 
   function deleteInterview() {
@@ -43,7 +49,10 @@ export default function Appointment(props) {
       .then(() => {
         transition(EMPTY);
       })
-      .catch((error) => console.log(error));
+      .catch(() => {
+        // console.log("We have an error");
+        transition(ERROR_DELETE)
+      });
   };
 
   return (
@@ -54,10 +63,20 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onEdit={() => transition(EDIT)}
           onDelete={() => transition(CONFIRM)}
         />
       )}
       {mode === CREATE && (
+        <Form
+          name={props.name}
+          interviewers={props.interviewers}
+          interviewer={props.interviewer}
+          onCancel={() => back()}
+          onSave={save}
+        />
+      )}
+      {mode === EDIT && (
         <Form
           name={props.name}
           interviewers={props.interviewers}
@@ -72,6 +91,18 @@ export default function Appointment(props) {
         <Confirm
           message="Are you sure you would like to delete?"
           onConfirm={deleteInterview}
+        />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error
+          message="We have encountered an error while processing your request."
+          onClose={() => back()}
+        />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+          message="We have encountered an error while processing your request."
+          onClose={() => back()}
         />
       )}
     </article>

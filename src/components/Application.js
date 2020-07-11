@@ -30,7 +30,6 @@ export default function Application(props) {
   const interviewersForDay = getInterviewersForDay(state, state.day);
 
   function bookInterview(id, interview) {
-    // console.log(interview.student);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }

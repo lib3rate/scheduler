@@ -6,13 +6,14 @@ import Header from "components/Appointment/Header"
 import Empty from "components/Appointment/Empty"
 import Show from "components/Appointment/Show"
 // import Confirm from "components/Appointment/Confirm"
-// import Status from "components/Appointment/Status"
+import Status from "components/Appointment/Status"
 // import Error from "components/Appointment/Error"
 import Form from "components/Appointment/Form"
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVING = "SAVING";
 
 export default function Appointment(props) {
 
@@ -25,6 +26,7 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+    transition(SAVING);
     props.bookInterview(props.id, interview)
       .then(() => {
         transition(SHOW);
@@ -49,6 +51,11 @@ export default function Appointment(props) {
           interviewer={props.interviewer}
           onCancel={() => back()}
           onSave={save}
+        />
+      )}
+      {mode === SAVING && (
+        <Status
+          message="Saving"
         />
       )}
     </article>

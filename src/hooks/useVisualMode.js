@@ -28,4 +28,4 @@ export default function useVisualMode(initial) {
     transition,
     back
   };
-}
+};

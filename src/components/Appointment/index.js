@@ -31,27 +31,25 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    transition(SAVING);
+    transition(SAVING, true);
     props.bookInterview(props.id, interview)
       .then(() => {
         transition(SHOW);
       })
-      .catch(() => {
-        // console.log("We have an error");
-        transition(ERROR_SAVE)
+      .catch(error => {
+        transition(ERROR_SAVE, true)
       });
   };
 
   function deleteInterview() {
     const interview = null;
-    transition(DELETING);
+    transition(DELETING, true);
     props.cancelInterview(props.id, interview)
       .then(() => {
         transition(EMPTY);
       })
-      .catch(() => {
-        // console.log("We have an error");
-        transition(ERROR_DELETE)
+      .catch(error => {
+        transition(ERROR_DELETE, true)
       });
   };
 

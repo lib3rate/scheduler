@@ -8,10 +8,10 @@ export default function DayListItem(props) {
     "day-list__item--full": props.spots === 0
   });
 
-  const formatSpots = (props) => {
+  const formatSpots = spots => {
     return (
-      props.spots === 0 ? "no spots remaining" :
-      props.spots === 1 ? "1 spot remaining": 
+      spots === 0 ? "no spots remaining" :
+      spots === 1 ? "1 spot remaining": 
       `${props.spots} spots remaining`
     )
   }

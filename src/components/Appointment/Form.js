@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import InterviewerList from "../InterviewerList";
 import Button from "../Button";
 
@@ -9,6 +10,7 @@ export default function Form(props) {
 
   const reset = () => {
     setName("");
+    setError("");
     setInterviewer(null);
   }
 
@@ -17,16 +19,13 @@ export default function Form(props) {
     props.onCancel();
   }
 
-  // const save = () => {
-  //   props.onSave(name, interviewer);
-  // }
-
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
       return;
     }
   
+    setError("");
     props.onSave(name, interviewer);
   }
 

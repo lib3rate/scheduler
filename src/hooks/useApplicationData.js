@@ -29,9 +29,12 @@ export default function useApplicationData() {
     }
   };
 
-  function bookInterview(id, interview) {
+  function bookInterview(id, interview, edit = false) {
     const currentDay = findDay(id);
-    const updatedSpots = currentDay.spots -= 1;
+    if (edit === false) {
+      currentDay.spots -= 1;
+    };
+    // const updatedSpots = currentDay.spots -= 1;
 
     // const day = {
     //   ...state.days[currentDay.id - 1],

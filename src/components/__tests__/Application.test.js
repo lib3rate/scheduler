@@ -5,6 +5,7 @@ import { cleanup,
   getByAltText,
   getByPlaceholderText,
   getByText,
+  getByTestId,
   prettyDOM,
   render,
   waitForElement,
@@ -87,16 +88,15 @@ describe("Application", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
       );
-    console.log(prettyDOM(day));
+    // console.log(prettyDOM(day));
 
     const appointment = getAllByTestId(container, "appointment").find(
       appointment => queryByText(appointment, "Archie Cohen")
     );
-
-    // debug(appointment);
-
+    
     fireEvent.click(getByAltText(appointment, "Edit"));
-    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+    // console.log(prettyDOM(appointment));
+    fireEvent.change(getByTestId(appointment, "student-name-input"), {
       target: { value: "Lydia Miller-Jones" }
     });
     fireEvent.click(getByText(appointment, "Save"));
@@ -104,13 +104,14 @@ describe("Application", () => {
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
     
     await waitForElement(() => getByText(container, "Lydia Miller-Jones"));
+    // console.log(prettyDOM(appointment));
     
     // const day = getAllByTestId(container, "day").find(day =>
     //   queryByText(day, "Monday")
     //   );
 
-    console.log(prettyDOM(day));
-    
+    // console.log(prettyDOM(day));
+
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   });
 

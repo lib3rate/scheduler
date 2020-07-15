@@ -74,6 +74,8 @@ describe("Form", () => {
       />
     );
   
+    // Why do we try to call onSave here? It would go to "Saving" mode and the test would be impossible
+    
     fireEvent.click(getByText("Save"));
   
     fireEvent.change(getByPlaceholderText("Enter Student Name"), {

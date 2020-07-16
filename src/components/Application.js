@@ -17,6 +17,8 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
+  // Pulling the data from the database and setting the state on loading the page
+
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -27,7 +29,11 @@ export default function Application(props) {
     });
   }, []);
 
+  // Getting the correct interviewers for the particular day
+
   const interviewersForDay = getInterviewersForDay(state, state.day);
+
+  // Getting the correct interview schedule for the particular day
 
   const schedule = getAppointmentsForDay(state, state.day).map((appointment) => {
     const interview = getInterview(state, appointment.interview);

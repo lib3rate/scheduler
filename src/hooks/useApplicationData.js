@@ -11,6 +11,8 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
+  // Finding the correct day using an appointment id
+
   const findDay = appointmentId => {
     for (let oneDay of state.days) {
       if (oneDay.appointments.includes(appointmentId)) {
@@ -18,6 +20,8 @@ export default function useApplicationData() {
       }
     }
   };
+
+  // Updating the state, the spots for the day and the database when creating or editing an interview
 
   function bookInterview(id, interview, edit = false) {
     const currentDay = findDay(id);
@@ -45,6 +49,8 @@ export default function useApplicationData() {
         })
     );
   };
+
+  // Updating the state, the spots for the day and the database when cancelling (deleting) an interview
 
   function cancelInterview(id, interview) {
     const currentDay = findDay(id);

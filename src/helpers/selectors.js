@@ -1,3 +1,5 @@
+// Getting the correct appointments for the particular day
+
 export function getAppointmentsForDay(state, day) {
   const foundDay = state.days.find(oneDay => oneDay.name === day);
   const results = [];
@@ -16,6 +18,8 @@ export function getAppointmentsForDay(state, day) {
   return results;
 };
 
+// Getting the correct interviewers for the particular day
+
 export function getInterviewersForDay(state, day) {
   const foundDay = state.days.find(oneDay => oneDay.name === day);
   const results = [];
@@ -33,6 +37,8 @@ export function getInterviewersForDay(state, day) {
   }
   return results;
 };
+
+// Getting the correct interview data when creating the schedule for a day
 
 export function getInterview(state, interview) {
   let result = null;

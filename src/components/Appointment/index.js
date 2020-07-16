@@ -23,9 +23,13 @@ const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
 
+  // Showing the interview or an empty card for the interviews
+
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
+  // Calling the bookInterview function and transitioning to SAVING or ERROR modes
 
   function save(name, interviewer, edit = false) {
     const interview = {
@@ -41,6 +45,8 @@ export default function Appointment(props) {
         transition(ERROR_SAVE, true)
       });
   };
+
+  // Calling the cancelInterview function and transitioning to EMPTY or ERROR modes
 
   function deleteInterview() {
     const interview = null;

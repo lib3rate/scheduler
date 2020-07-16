@@ -4,6 +4,8 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
+  // Transiting to the next visual mode of the interview card
+
   function transition(current, replace = false) {
     setMode(current);
     if (replace === true) {
@@ -13,6 +15,8 @@ export default function useVisualMode(initial) {
     }
     // return;
   }
+
+  // Returning to the previous visual mode of the interview card
 
   function back() {
     if (history.length > 1) {

@@ -4,9 +4,9 @@ A React application that allows users to book and cancel interviews. Application
 
 ## Screenshots
 
-!["The page on loading it with the list of posted tweets on the right"](https://github.com/lib3rate/tweeter/blob/master/docs/page-on-load.png?raw=true)
-!["Submitting a new tweet as shown on mobile phones"](https://github.com/lib3rate/tweeter/blob/master/docs/new-tweet-mobile.png?raw=true)
-!["Submitting a new tweet as shown on tablets"](https://github.com/lib3rate/tweeter/blob/master/docs/new-tweet-tablet.png?raw=true)
+!["Default application view"](https://github.com/lib3rate/scheduler/blob/master/docs/Default%20application%20view.png?raw=true)
+!["Booking an appointment"](https://github.com/lib3rate/scheduler/blob/master/docs/Booking%20an%20appointment.png?raw=true)
+!["Status indicator when updating"](https://github.com/lib3rate/scheduler/blob/master/docs/Status%20indicator%20when%20updating%20.png?raw=true)
 
 ## Setup
 

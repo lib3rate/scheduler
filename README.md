@@ -1,6 +1,10 @@
 # Interview Scheduler
 
-A React application that allows users to book and cancel interviews. Application testing done with Jest and Cypress.
+An application that allows users to book and cancel interviews.
+
+Front-end: React, HTML, CSS
+Back-end: Node, Express, PostgreSQL
+Testing: Cypress, Storybook, Jest
 
 ## Screenshots
 

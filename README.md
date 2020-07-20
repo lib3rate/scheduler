@@ -3,7 +3,9 @@
 An application that allows users to book and cancel interviews.
 
 Front-end: React, HTML, CSS
+
 Back-end: Node, Express, PostgreSQL
+
 Testing: Cypress, Storybook, Jest
 
 ## Screenshots
